@@ -1,0 +1,55 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+*.egg-info/
+dist/
+build/
+
+# Node
+node_modules/
+Frontend/node_modules/
+npm-debug.log
+yarn-error.log
+Frontend/package-lock.json
+Backend/package-lock.json   
+
+# Angular
+.angular/
+dist/
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+.env.local
+**/.env
+**/.env.local
+Frontend/.env
+Backend/.env
+# Mais on garde .env.example pour la documentation
+!.env.example
+!**/.env.example
+
+# Model files (optionnel - décommentez si vous ne voulez pas pousser les modèles)
+# Backend/models/*.joblib
+# Backend/models/*.keras
+
+# Data files (optionnel - décommentez si vous ne voulez pas pousser les données)
+# Backend/*.csv
+
