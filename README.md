@@ -14,7 +14,7 @@ Application web complète pour la visualisation en temps réel et la prédiction
 
 ### Backend (Flask/Python)
 - API REST pour servir les données et les prédictions
-- Modèle de machine learning (LSTM) avec TensorFlow/Keras
+- Modèle de Deep Learning (LSTM) avec TensorFlow/Keras
 - Gestion des données historiques depuis un fichier CSV
 
 ### Frontend (Angular)
