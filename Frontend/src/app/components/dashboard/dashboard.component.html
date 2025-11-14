@@ -1,0 +1,104 @@
+<div class="dashboard-container">
+  <div class="max-w-7xl mx-auto">
+    <!-- Header -->
+    <div class="dashboard-header">
+      <h1 class="text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent mb-2">
+        EUR/USD Trading Dashboard
+      </h1>
+      <p class="text-slate-300">Analyse en temps réel et prédictions alimentées par IA</p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <!-- Main Chart Area -->
+      <div class="lg:col-span-2 main-card">
+        <div class="flex flex-col h-full">
+          <div class="flex justify-between items-start mb-6">
+            <div>
+              <h2 class="section-title">Données du Marché en Direct</h2>
+              <p class="text-slate-400 text-sm">Mouvement du prix EUR/USD en temps réel</p>
+            </div>
+            <div class="text-right">
+              <div class="text-sm text-slate-400">Prix Actuel</div>
+              <div class="current-price">
+                {{ currentPrice?.toFixed(4) || '---' }}
+              </div>
+              <div class="text-xs text-slate-500">EUR/USD</div>
+            </div>
+          </div>
+
+          <div class="chart-container">
+            <canvas baseChart
+              [data]="lineChartData"
+              [options]="lineChartOptions"
+              [type]="lineChartType">
+            </canvas>
+          </div>
+          <p class="info-message mt-2">
+            Ligne continue : Prix Réel | Ligne pointillée : Prédiction à 1 minute
+          </p>
+        </div>
+      </div>
+
+      <!-- Technical Indicators Panel -->
+      <div class="main-card">
+        <h2 class="section-title">Indicateurs Techniques</h2>
+        <p class="text-slate-400 text-sm mb-4">Métriques clés pour les décisions de trading</p>
+        
+        <div class="indicators-grid">
+          <div *ngFor="let indicator of indicatorsList" class="indicator-card">
+            <div class="indicator-label">{{ indicator.label }}</div>
+            <div class="flex items-center">
+              <span class="indicator-value">
+                {{ indicator.value?.toFixed(4) || '---' }}
+              </span>
+              <span *ngIf="indicator.value" class="trend-icon" [class.trend-up]="currentPrice && indicator.value && currentPrice > indicator.value" [class.trend-down]="currentPrice && indicator.value && currentPrice <= indicator.value">
+                {{ getIndicatorIcon(indicator.value) }}
+              </span>
+            </div>
+            <div class="mt-2 h-1 w-full bg-slate-700 rounded-full overflow-hidden">
+              <div [class]="'h-full ' + (currentPrice && indicator.value ? 
+                  (currentPrice > indicator.value ? 'bg-green-500' : 'bg-red-500') : 'bg-slate-600')"
+                   [style.width]="indicator.value ? '100%' : '0%'">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI Recommendation Section -->
+    <div class="mt-6 main-card">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+        <div>
+          <h2 class="section-title">Conseils de Trading par IA</h2>
+          <p class="text-slate-400 text-sm">Alimenté par l'apprentissage automatique avancé</p>
+        </div>
+        <button
+          (click)="generateRecommendation()"
+          [disabled]="isLoadingRecommendation"
+          class="recommendation-btn"
+        >
+          {{ isLoadingRecommendation ? 'Analyse en cours...' : 'Obtenir des conseils' }}
+        </button>
+      </div>
+
+      <div class="recommendation-box">
+        <div *ngIf="geminiRecommendation; else noRecommendation" class="w-full">
+          <p class="text-white font-medium mb-1">Recommandation IA :</p>
+          <p class="text-slate-300">{{ geminiRecommendation }}</p>
+        </div>
+        <ng-template #noRecommendation>
+          <div class="text-center w-full">
+            <p class="text-slate-400">Cliquez sur "Obtenir des conseils" pour générer des recommandations de trading par IA</p>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+
+    <!-- Status Bar -->
+    <div class="status-bar">
+      <p>Mise à jour des données chaque minute • Actualisation des prédictions toutes les 10 secondes</p>
+      <p>Dernière mise à jour : {{ currentTime | date:'medium' }}</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,296 @@
+/* Style général pour les cartes d'indicateurs */
+.indicator-card {
+  background: linear-gradient(145deg, #2d3748, #1a202c);
+  border-radius: 12px;
+  padding: 1.25rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px -1px rgba(255, 255, 255, 0.05), 0 2px 4px -1px rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.indicator-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Style pour les valeurs des indicateurs */
+.indicator-value {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 0.25rem;
+  color: #f8fafc;
+}
+
+.indicator-label {
+  font-size: 0.875rem;
+  color: #94a3b8;
+  margin-bottom: 0.25rem;
+}
+
+/* Style pour le bouton de génération de recommandation */
+.recommendation-btn {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+  font-weight: 500;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.recommendation-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+}
+
+.recommendation-btn:disabled {
+  background: #64748b;
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+/* Style pour le bouton de recommandation */
+.recommendation-btn {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  color: white;
+  font-weight: 500;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+  letter-spacing: 0.025em;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.2), 0 2px 4px -1px rgba(79, 70, 229, 0.1);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.recommendation-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #4338ca 0%, #6d28d9 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.recommendation-btn:hover::before {
+  opacity: 1;
+}
+
+.recommendation-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 4px -1px rgba(79, 70, 229, 0.2);
+}
+
+.recommendation-btn:disabled {
+  background: #e2e8f0;
+  color: #94a3b8;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.recommendation-btn:disabled::before {
+  display: none;
+}
+
+/* Style pour la section de recommandation */
+.recommendation-box {
+  background: rgba(45, 55, 72, 0.7);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  min-height: 150px;
+  display: flex;
+  align-items: center;
+  color: #f7fafc;
+  line-height: 1.6;
+}
+
+/* Style pour le conteneur principal */
+.dashboard-container {
+  background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+  min-height: 100vh;
+  padding: 2rem;
+  color: #f7fafc;
+}
+
+/* Style pour les titres */
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: #f8fafc;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  border-radius: 3px;
+}
+
+/* Style pour les cartes principales */
+.main-card {
+  background: rgba(26, 32, 44, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2), 0 8px 10px -6px rgba(0, 0, 0, 0.15);
+  color: #f7fafc;
+}
+
+/* Animation de chargement */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.loading {
+  animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Style pour les indicateurs de tendance */
+.trend-up {
+  color: #10b981;
+}
+
+.trend-down {
+  color: #ef4444;
+}
+
+.trend-neutral {
+  color: #94a3b8;
+}
+
+/* Style pour la grille des indicateurs */
+.indicators-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+/* Style pour le prix actuel */
+.current-price {
+  font-size: 1.75rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0.5rem 0;
+}
+
+/* Style pour le conteneur du graphique */
+.chart-container {
+  background: rgba(26, 32, 44, 0.7);
+  border-radius: 12px;
+  padding: 1.5rem;
+  height: 400px;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Style pour les messages d'information */
+.info-message {
+  color: #94a3b8;
+  font-style: italic;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+/* Style pour l'en-tête du tableau de bord */
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 0 1rem;
+}
+
+.dashboard-header h1 {
+  margin: 0 auto 0.5rem;
+  max-width: 100%;
+  line-height: 1.2;
+}
+
+.dashboard-header p {
+  margin: 0 auto;
+  max-width: 600px;
+  line-height: 1.5;
+}
+
+/* Style pour les icônes de tendance */
+.trend-icon {
+  font-size: 1.25rem;
+  margin-left: 0.5rem;
+  display: inline-block;
+}
+
+.trend-up {
+  color: #10B981; /* Vert pour tendance haussière */
+}
+
+.trend-down {
+  color: #EF4444; /* Rouge pour tendance baissière */
+}
+
+/* Barre de statut */
+.status-bar {
+  width: 100%;
+  text-align: center;
+  padding: 1rem 0;
+  margin-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: rgba(15, 23, 42, 0.5);
+  border-radius: 0.5rem;
+}
+
+.status-bar p {
+  margin: 0.25rem 0;
+  color: #94a3b8; /* Couleur texte plus claire pour le contraste */
+  font-size: 0.75rem;
+  letter-spacing: 0.025em;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .indicators-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .indicators-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .dashboard-container {
+    padding: 1rem;
+  }
+  
+  .section-title {
+    font-size: 1.25rem;
+  }
+}
